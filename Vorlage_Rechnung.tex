@@ -1,15 +1,76 @@
-%! Author = basti
+%! Author = Sebastian Matthias Schlerka
 %! Date = 15.06.23
 
 % Preamble
-\documentclass[11pt]{article}
+\documentclass[
+    fontsize = 12pt,
+    paper = a4,
+    enlargefirstpage = on,
+    fromalign = right]{scrlttr2}
 
 % Packages
-\usepackage{amsmath}
+\usepackage{german}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage[official]{eurosym}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=3cm}
+
+% Fonts
+\setkomafont{fromname}{\sffamily\bfseries}
+\setkomafont{fromaddress}{\sffamily}
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\mdseries}
+\setkomafont{backaddress}{\mdseries}
+\usepackage[sfdefault]{AlegreyaSans}
 
 % Document
 \begin{document}
+\LoadLetterOption{DINmtext}
 
+% Absenderinformationen – Platzhalter auswechseln
+\setkomavar{fromname}{VORNAME NACHNAHME}
+\setkomavar{fromaddress}{STRAßE HAUSNUMMER \\ POSTLEITZAHL ORT}
+\setkomavar{fromphone}{TELEFONNUMMER}
+\setkomavar{fromemail}{MAILADRESSE}
+\setkomavar{backaddressseparator}{---}
+\setkomavar{signature}{}
+\setkomavar{frombank}{BANKVERBINDUNG}
 
+% Fußzeile mit Bankverbindung – Platzhalter auswechseln
+\firstfoot{\centering \footnotesize Bankverbindung: IBAN: XXXX (BANK, BIC: XXXXX)\\ Steuernummer: XXXXX}
+
+% Ort, Datum, Rechnungsnummer
+\setkomavar{place}{ORT}
+\setkomavar{placeseparator}{, den \today}
+\setkomavar{date}{\today}
+\setkomavar{invoice}{\VAR{RECHNUNGSNUMMER}}
+
+\begin{letter}{\VAR{ADRESSE}}
+
+    \setkomavar{subject}{\textbf{Rechnung}}
+    \opening{}
+    
+    \begin{tabular}{p{0.05\textwidth}p{0.12\textwidth}p{0.33\textwidth}p{0.1\textwidth}p{0.13\textwidth}p{0.15\textwidth}}
+        \textbf{Pos.} &\textbf{Datum} & \textbf{Bezeichnung} & \textbf{Stunden} & \textbf{Stundensatz} & \textbf{Gesamtpreis}\\
+        \midrule
+        \VAR{TABELLE}
+    \end{tabular}
+    \vspace{0.2cm}
+
+    Gemäß § 19 Abs. 1 UStG wird keine Umsatzsteuer ausgewiesen.
+
+    Bitte überweisen Sie den Betrag auf mein Konto mit der IBAN \textbf{XXXX} bei der BANK (BIC: XXXX). %Platzhalter austauschen
+
+    Ich danke Ihnen für Ihren Auftrag.
+
+    \closing{Mit freundlichen Grüßen,}
+    \vspace{-2.3cm}\includegraphics{signature.pdf}\\ % Die signature.pdf durch einen vektorisierten Scan der eigenen Unterschrift ersetzen.
+    VORNAME NACHNAME
+\end{letter}
 
 \end{document}

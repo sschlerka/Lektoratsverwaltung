@@ -401,7 +401,7 @@ def rechnung_erstellen():
         cur.execute("UPDATE Zeiten SET Rechnungsnummer = ? WHERE Abgerechnet = 0 AND Projekt = ?", (rechnungsnummer, projekt[0]))
         cur.execute("UPDATE Zeiten SET Abgerechnet = 1 WHERE Abgerechnet = 0 AND Projekt = ?", (projekt[0]))
     dateiname = f"Rechnung-{rechnungsnummer}"
-    with open("Rechnungsvorlage.tex") as file:
+    with open("Vorlage_Rechnung.tex") as file:
         vorlage = file.read()
     vorlage = vorlage.replace("\\VAR{ADRESSE}", anschrift)
     vorlage = vorlage.replace("\\VAR{RECHNUNGSNUMMER}", rechnungsnummer)
